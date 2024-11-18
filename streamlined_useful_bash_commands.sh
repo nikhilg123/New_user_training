@@ -33,11 +33,7 @@ sed 's/%//g' file.txt > file2.txt
 
 #This command allows you to take a range of lines from one input file and output it to another file
 
-sed -n '52254,53319 p' < file1.txt > file2.txt'
-
-#This command will allow you to determine how many sequences with a fasta file are of a specified length e.g., "4000" (python or the program pullseq would serve better for this) 
-
-cat the | awk '{y= i++ % 2 ; L[y]=$0; if(y==1 && length(L[1])>=4000) {printf("%s\n%s\n",L[0],L[1]);}}|grep -c ">"
+sed -n '52254,53319 p' < file1.txt > file2.txt
 
 #This command allows you to convert all hidden files in a directory to visible files
 
