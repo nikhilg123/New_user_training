@@ -34,7 +34,6 @@ cat /var/run/reboot-required.pkgs
 #setting (virtual) memory limits on shell (this would include RAM + swap + memory-mapped resources). This is for a single session. 
 
 ulimit -v 128k
-command
 
 #allows for system shutdown and rebooting, otherwise it turns off and then you need to turn it on manually or with IDRAC (specific to Dell). "18:00" represents when the shutdown will be scheduled. A system-wide message will be sent to all active users.
 
@@ -70,7 +69,9 @@ sudo chown -v root:root /Data/swapfile
 
 #adjusting and assessing the swappiness parameter which is a measure of how readily swap space is used. It is currently 10 which makes sure swap is rarely used unless necessary because it is slow to use. This parameter is fixed in sysctl.conf and does not need to be changed when a new swap file is made. 
 
-sudo sysctl vm.swappiness=10 [to make permanent "vim /etc/sysctl.conf and then add vm.swappiness = 10 at the end of file" 
+sudo sysctl vm.swappiness=10 
+
+#to make permanent swappiness permanent "vim /etc/sysctl.conf" and then add "vm.swappiness = 10" at the end of file
 
 #to get the current swappiness value 
 
@@ -92,7 +93,7 @@ echo 'export HISTTIMEFORMAT="%d/%m/%y %T "' >> ~/.bash_profile
 
 #how to send yourself an email when a server process is complete "-s" specifies the subject, echo specifies the mail body 
 
-command; echo "Your for loop finished running" | mail -s "hydra job update" *****@gmail.com
+ <your-command-here>; echo "Your for loop finished running" | mail -s "hydra job update" *****@gmail.com
 
 #see who last logged in among a list of users (helps to track what happened when the server crashes or when processes conflict I.e., if you don't have a scheduler (e.g., SLURM) in place
 
@@ -108,7 +109,7 @@ ls -ld /proc/PID
 
 #delay command until first PID finishes
 
-while [ -d /proc/PID-HERE ]; do sleep 0.1; done; second_command
+while [ -d /proc/PID-HERE ]; do sleep 0.1; done; <your-command-here>
 
 #make file unreadable and inexecutable for others 
 
@@ -118,9 +119,7 @@ chmod o-r file && chmod o-x file
 
 lscpu
 
-#server alive (helps keep server connections active) modify "/etc/ssh/ssh_config" with the line below
-
-ServerAliveInterval 10 
+#server alive (helps keep server connections active) modify "/etc/ssh/ssh_config" with the line "ServerAliveInterval 10" 
 
 #check whether hyperthreading is enabled (0 is no 1 is yes)
 
@@ -130,7 +129,7 @@ grep -i 'ht' /proc/cpuinfo
 
 #run as other user (helps confirm permissions and conflicts a user is experiencing)
 
-sudo -u usern command
+sudo -u usern  <your-command-here>
 
 #facl fine-grained permissions (proceed with caution)
 
